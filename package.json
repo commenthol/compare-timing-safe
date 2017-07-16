@@ -1,0 +1,55 @@
+{
+  "name": "compare-timing-safe",
+  "version": "1.0.0-0",
+  "description": "String comparison in length constant time",
+  "keywords": [
+    "compare",
+    "constant",
+    "equal",
+    "length",
+    "safe",
+    "string",
+    "time",
+    "timing"
+  ],
+  "homepage": "https://github.com/commenthol/compare-timing-safe#readme",
+  "bugs": {
+    "url": "https://github.com/commenthol/compare-timing-safe/issues"
+  },
+  "license": "Unlicense",
+  "author": "commenthol <commenthol@gmail.com>",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/commenthol/compare-timing-safe.git"
+  },
+  "scripts": {
+    "dist": "npm run lint && npm test",
+    "dox": "cat index.js | dox | doxme --readme > README.md",
+    "lint": "eslint '**/*.js'",
+    "test": "mocha",
+    "zuul": "zuul --ui mocha-bdd --local 3000 --open test/*.js"
+  },
+  "browser": {
+    "./index.js": "./browser.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^3.4.2",
+    "zuul": "^3.11.1"
+  }
+}

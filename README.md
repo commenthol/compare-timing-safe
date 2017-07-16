@@ -41,8 +41,13 @@ $ npm install compare-timing-safe
 
 ```sh
 $ npm test
+$ npm run zuul
 ```
 
 ## License
 
 Unlicense <https://unlicense.org>
+
+## References
+
+- [A lesson in timing attacks](https://codahale.com/a-lesson-in-timing-attacks/)
