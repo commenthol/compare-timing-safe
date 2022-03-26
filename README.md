@@ -13,7 +13,7 @@ String, buffer comparison in length-constant time
 **Example**
 
 ```js
-const timingSafeEqual = require('compare-timing-safe')
+import timingSafeEqual from 'compare-timing-safe'
 const input = 'a'
 const compareWith = 'bbbbbbbb'
 timingSafeEqual(input, compareWith)
@@ -41,7 +41,6 @@ $ npm install compare-timing-safe
 
 ```sh
 $ npm test
-$ npm run zuul
 ```
 
 ## License
