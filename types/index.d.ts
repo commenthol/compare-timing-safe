@@ -1,5 +1,4 @@
-import crypto from 'crypto'
-
+export default timingSafeEqual;
 /**
  * string, buffer comparison in length-constant time
  * uses crypto module
@@ -15,10 +14,4 @@ import crypto from 'crypto'
  * timingSafeEqual(input, compareWith)
  * //> false
  */
-function timingSafeEqual (a, b) {
-  const key = crypto.randomBytes(32)
-  const toHmac = (str) => crypto.createHmac('sha256', key).update(str).digest()
-  return crypto.timingSafeEqual(toHmac(a), toHmac(b))
-}
-
-export default timingSafeEqual
+declare function timingSafeEqual(a: string | Buffer, b: string | Buffer): boolean;
