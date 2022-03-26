@@ -1,13 +1,14 @@
-/* global describe, it */
+import assert from 'assert'
 
-const assert = require('assert')
+import timingSafeEqual from '../index.js'
+import timingSafeEqualBrowser from '../browser.js'
 
 const STR = '\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
 
-describe('#equal-timeing-safe', function () {
+describe('compare-timeing-safe', function () {
   ;[
-    ['timingSafeEqual', require('..'), 1],
-    ['timingSafeEqual (browser)', require('../browser.js'), 0]
+    ['timingSafeEqual', timingSafeEqual, 1],
+    ['timingSafeEqual (browser)', timingSafeEqualBrowser, 0]
   ].forEach(([name, timingSafeEqual, hasBuffer]) => {
     describe(name, function () {
       describe('good case', function () {
@@ -22,6 +23,11 @@ describe('#equal-timeing-safe', function () {
             assert.ok(timingSafeEqual(a, a))
           })
         }
+
+        it('buffer like', function () {
+          const a = stringToUtf8Array(STR)
+          assert.ok(timingSafeEqual(a, a))
+        })
       })
 
       describe('bad case', function () {
@@ -90,4 +96,17 @@ describe('#equal-timeing-safe', function () {
 
 function logFloor (val) {
   return Math.floor(Math.log(val))
+}
+
+function stringToUtf8Array (str) {
+  const sUtf8 = unescape(encodeURIComponent(str))
+  return stringToUint8Array(sUtf8)
+}
+
+function stringToUint8Array (str) {
+  const array = new Uint8Array(str.length)
+  for (let i = 0; i < array.length; i++) {
+    array[i] = str.charCodeAt(i)
+  }
+  return array
 }
