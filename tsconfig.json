@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "noImplicitAny": false,
     "strict": true,
-    "target": "ES2021"
+    "target": "es2021"
   },
   "include": [
     "**/*.js"
@@ -19,8 +19,10 @@
     "dist",
     "docs",
     "examples",
+    "lib",
     "node_modules",
     "test",
-    "tmp"
+    "tmp",
+    "rollup.conf.js"
   ]
 }

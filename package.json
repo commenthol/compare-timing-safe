@@ -1,6 +1,6 @@
 {
   "name": "compare-timing-safe",
-  "version": "2.0.1",
+  "version": "2.0.2-0",
   "description": "String comparison in length constant time",
   "keywords": [
     "compare",
@@ -23,16 +23,21 @@
   "license": "Unlicense",
   "author": "commenthol <commenthol@gmail.com>",
   "type": "module",
-  "main": "index.js",
-  "module": "index.js",
-  "browser": {
-    "./index.js": "./browser.js"
-  },
+  "main": "./lib/index.cjs",
+  "module": "./index.js",
+  "browser": "./browser.js",
   "directories": {
     "test": "test"
   },
+  "files": [
+    "index.js",
+    "browser.js",
+    "lib",
+    "types"
+  ],
   "scripts": {
-    "ci": "npm run lint && npm test && npm run types",
+    "build": "rm -r lib/* && rollup -c rollup.conf.js",
+    "ci": "npm run lint && npm run build && npm test && npm run types",
     "dox": "cat index.js | dox | doxme --readme > README.md",
     "lint": "eslint --ext .js .",
     "test": "mocha",
@@ -51,6 +56,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "mocha": "^9.2.2",
+    "rollup": "^2.70.1",
     "typescript": "^4.6.3"
   },
   "engine": {
