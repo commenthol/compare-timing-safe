@@ -1,3 +1,6 @@
+[![NPM version](https://badge.fury.io/js/compare-timing-safe.svg)](https://www.npmjs.com/package/compare-timing-safe/)
+[![Build Status](https://github.com/commenthol/compare-timing-safe/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/commenthol/compare-timing-safe/actions/workflows/ci.yml?query=branch%3Amaster)
+
 # compare-timing-safe
 
 > String comparison in length constant time
