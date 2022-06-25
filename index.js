@@ -16,6 +16,9 @@ import crypto from 'crypto'
  * //> false
  */
 function timingSafeEqual (a, b) {
+  if (!a || !a.length || !b || !b.length) {
+    return false
+  }
   const key = crypto.randomBytes(32)
   const toHmac = (str) => crypto.createHmac('sha256', key).update(str).digest()
   return crypto.timingSafeEqual(toHmac(a), toHmac(b))

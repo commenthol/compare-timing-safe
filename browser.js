@@ -7,6 +7,9 @@
  * @return {boolean} true if strings match
  */
 function timingSafeEqual (a, b) {
+  if (!a || !a.length || !b || !b.length) {
+    return false
+  }
   const _a = toArray(a)
   const _b = toArray(b)
   let diff = bton(_a.length !== _b.length)
@@ -18,8 +21,13 @@ function timingSafeEqual (a, b) {
 
 export default timingSafeEqual
 
-const bton = (/** @type {boolean} */b) => b ? 1 : 0
+/**
+ * 1=true 0=false
+ * @param {boolean} b
+ * @returns {number}
+ */
+const bton = (b) => b ? 1 : 0
 
-function toArray (strOrArr) {
-  return strOrArr?.length ? strOrArr : strOrArr.split('')
-}
+const toArray = (strOrArr) => strOrArr?.length
+  ? strOrArr
+  : strOrArr.split('')
