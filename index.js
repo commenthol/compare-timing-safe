@@ -16,9 +16,14 @@ import crypto from 'crypto'
  * //> false
  */
 function timingSafeEqual (a, b) {
-  const key = crypto.randomBytes(32)
-  const toHmac = (str) => crypto.createHmac('sha256', key).update(str).digest()
-  return crypto.timingSafeEqual(toHmac(a), toHmac(b))
+  if (!a || !a.length || !b || !b.length) {
+    return false
+  }
+  const isEqual = crypto.timingSafeEqual(toHash(a), toHash(b))
+  // make final check to detect hash collisions
+  return (isEqual && a.toString() === b.toString())
 }
+
+const toHash = (str) => crypto.createHash('sha256').update(str).digest()
 
 export default timingSafeEqual
