@@ -23,6 +23,13 @@
   "license": "Unlicense",
   "author": "commenthol <commenthol@gmail.com>",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "main": "./lib/index.cjs",
   "module": "./index.js",
   "browser": "./browser.js",
@@ -36,6 +43,7 @@
     "types"
   ],
   "scripts": {
+    "all": "npm run ci",
     "build": "rm -r lib/* && rollup -c rollup.conf.js",
     "ci": "npm run lint && npm run build && npm test && npm run types",
     "dox": "cat index.js | dox | doxme --readme > README.md",
@@ -49,15 +57,15 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "eslint": "^8.18.0",
+    "@types/node": "^18.11.9",
+    "eslint": "^8.27.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-n": "^15.2.3",
-    "eslint-plugin-promise": "^6.0.0",
-    "mocha": "^10.0.0",
-    "rollup": "^2.75.7",
-    "typescript": "^4.7.4"
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "mocha": "^10.1.0",
+    "rollup": "^3.3.0",
+    "typescript": "^4.8.4"
   },
   "engine": {
     "node": ">=12"
