@@ -15,15 +15,16 @@ import crypto from 'crypto'
  * timingSafeEqual(input, compareWith)
  * //> false
  */
-function timingSafeEqual (a, b) {
+function timingSafeEqual(a, b) {
   if (!a || !a.length || !b || !b.length) {
     return false
   }
   const isEqual = crypto.timingSafeEqual(toHash(a), toHash(b))
   // make final check to detect hash collisions
-  return (isEqual && a.toString() === b.toString())
+  return isEqual && a.toString() === b.toString()
 }
 
-const toHash = (str) => crypto.createHash('sha256').update(str).digest()
+const toHash = (str) =>
+  crypto.createHash('sha256').update(str, 'utf-16le').digest()
 
 export default timingSafeEqual

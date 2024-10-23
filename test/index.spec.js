@@ -3,9 +3,10 @@ import assert from 'assert'
 import timingSafeEqual from '../index.js'
 import timingSafeEqualBrowser from '../browser.js'
 
-const STR = '\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u{1F47B}'
+const STR =
+  '\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u{1F47B}'
 
-describe('compare-timeing-safe', function () {
+describe('compare-timing-safe', function () {
   ;[
     ['timingSafeEqual (node)', timingSafeEqual, 1],
     ['timingSafeEqual (browser)', timingSafeEqualBrowser, 0]
@@ -37,7 +38,8 @@ describe('compare-timeing-safe', function () {
           ['same length', STR, STR.replace(/A/, 'B')],
           ['undefined args', undefined, undefined],
           ['a undefined', undefined, STR],
-          ['b undefined', STR, undefined]
+          ['b undefined', STR, undefined],
+          ['\udc69 !== \udc6a', '\udc69', '\udc6a']
         ]
         tests.forEach(([name, a, b]) => {
           it(name, function () {
@@ -51,18 +53,18 @@ describe('compare-timeing-safe', function () {
         const cache = {}
 
         // common non timing safe string comparison
-        function loop (a, b, i) {
+        function loop(a, b, i) {
           let r = 0
           const start = Date.now()
           while (i--) {
-            r |= (b === a)
+            r |= b === a
           }
           r = 0 // prevents eslint no unused vars
           return Date.now() - start + r
         }
 
         // our timing safe string comparison
-        function loopSafe (a, b, i) {
+        function loopSafe(a, b, i) {
           let r = 0
           const start = Date.now()
           while (i--) {
@@ -97,16 +99,16 @@ describe('compare-timeing-safe', function () {
   })
 })
 
-function logFloor (val) {
+function logFloor(val) {
   return Math.floor(Math.log(val))
 }
 
-function stringToUtf8Array (str) {
+function stringToUtf8Array(str) {
   const sUtf8 = unescape(encodeURIComponent(str))
   return stringToUint8Array(sUtf8)
 }
 
-function stringToUint8Array (str) {
+function stringToUint8Array(str) {
   const array = new Uint8Array(str.length)
   for (let i = 0; i < array.length; i++) {
     array[i] = str.charCodeAt(i)

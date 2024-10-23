@@ -6,7 +6,7 @@
  * @param {string|Uint8Array} b - string or buffer to compare with `a`
  * @return {boolean} true if strings match
  */
-function timingSafeEqual (a, b) {
+function timingSafeEqual(a, b) {
   if (!a || !a.length || !b || !b.length) {
     return false
   }
@@ -16,7 +16,7 @@ function timingSafeEqual (a, b) {
   for (let i = 0; i < _b.length; i++) {
     diff |= bton(_a[i] !== _b[i])
   }
-  return (diff === 0)
+  return diff === 0
 }
 
 export default timingSafeEqual
@@ -26,8 +26,6 @@ export default timingSafeEqual
  * @param {boolean} b
  * @returns {number}
  */
-const bton = (b) => b ? 1 : 0
+const bton = (b) => (b ? 1 : 0)
 
-const toArray = (strOrArr) => strOrArr?.length
-  ? strOrArr
-  : strOrArr.split('')
+const toArray = (strOrArr) => (strOrArr?.length ? strOrArr : strOrArr.split(''))
