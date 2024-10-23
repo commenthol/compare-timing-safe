@@ -5,7 +5,8 @@ export default [
       {
         file: './lib/index.cjs',
         format: 'cjs'
-      }],
+      }
+    ],
     plugins: []
   }
 ]
